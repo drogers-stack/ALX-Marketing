@@ -489,6 +489,51 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  .logo-img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ===== SHARE PLATFORMS ===== */
+  .share-platforms {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .btn-platform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-platform svg {
+    width: 20px; height: 20px;
+  }
+
+  .btn-platform:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn-platform--insta:hover { border-color: #e1306c; color: #e1306c; background: rgba(225,48,108,0.08); }
+  .btn-platform--tiktok:hover { border-color: #69c9d0; color: #69c9d0; background: rgba(105,201,208,0.08); }
+
   /* ===== MODAL ===== */
   .modal-overlay {
     display: none;
@@ -704,7 +749,7 @@
   @media (max-width: 420px) {
     .info-row { grid-template-columns: 1fr; }
     .feed-grid { grid-template-columns: 1fr; }
-    .btn-share-row { flex-direction: column; }
+    .share-platforms { grid-template-columns: 1fr 1fr; }
   }
 
   canvas#offscreenCanvas { display: none; }
@@ -761,9 +806,23 @@
     <p class="ios-tip" id="iosTip" style="display:none">📱 On iPhone? Long-press the image above to save it to your camera roll.</p>
     <div class="modal-actions">
       <button class="btn-download" onclick="downloadCard()">↓ Download PNG</button>
-      <div class="btn-share-row">
-        <button class="btn-share" onclick="shareX()">Share on 𝕏</button>
-        <button class="btn-share" id="nativeShareBtn" onclick="nativeShare()" style="display:none">Share…</button>
+      <div class="share-platforms">
+        <button class="btn-platform" onclick="shareX()" title="Share on X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>X</span>
+        </button>
+        <button class="btn-platform" onclick="shareLinkedIn()" title="Share on LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span>LinkedIn</span>
+        </button>
+        <button class="btn-platform btn-platform--insta" onclick="shareInstagram()" title="Share on Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </button>
+        <button class="btn-platform btn-platform--tiktok" onclick="shareTikTok()" title="Share on TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          <span>TikTok</span>
+        </button>
       </div>
     </div>
   </div>
@@ -776,7 +835,9 @@
     <!-- Logo -->
     <div class="logo-wrap">
       <div class="logo-badge">
-        <div class="logo-circle">ALX</div>
+        <!-- PLACEHOLDER: replace src with your ALX Ghana logo URL -->
+        <img id="topLogo" src="" alt="ALX Ghana" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="logo-circle" style="display:none">ALX</div>
         <span class="logo-text">ALX <span>Ghana</span></span>
       </div>
     </div>
@@ -798,7 +859,11 @@
 
       <!-- Header -->
       <div class="chat-header">
-        <div class="chat-avatar" aria-hidden="true">ALX</div>
+        <!-- PLACEHOLDER: replace src with your ALX avatar/icon URL -->
+        <div class="chat-avatar" aria-hidden="true">
+          <img id="chatAvatar" src="" alt="ALX" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:none">
+          <span id="chatAvatarFallback">ALX</span>
+        </div>
         <div class="chat-meta">
           <div class="chat-name">ALX Ghana</div>
           <div class="chat-status">Online</div>
@@ -989,7 +1054,6 @@
       closeDetailsModal();
       document.getElementById('cardPreviewImg').src = dataURL;
       document.getElementById('iosTip').style.display = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'block' : 'none';
-      document.getElementById('nativeShareBtn').style.display = navigator.share ? 'flex' : 'none';
       document.getElementById('cardModal').classList.add('active');
 
       // Update counter & feed in background
@@ -1072,6 +1136,21 @@
   }
 
   // ===== CANVAS IMAGE GENERATION =====
+  // PLACEHOLDER ASSETS — replace these URLs with real ones
+  const ALX_LOGO_URL = '';       // e.g. 'https://yourdomain.com/alx-logo-white.png'
+  const ALX_ICON_URL = '';       // e.g. 'https://yourdomain.com/alx-icon.png'
+
+  async function loadImage(src) {
+    return new Promise(resolve => {
+      if (!src) { resolve(null); return; }
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img);
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
   async function generateCanvas(statement, name) {
     const canvas = document.getElementById('offscreenCanvas');
     const ctx = canvas.getContext('2d');
@@ -1083,162 +1162,175 @@
     const accent = selectedColor;
     const lightColors = ['#fbd437','#05f283','#ffffff','#27DEF2'];
     const isLight = lightColors.includes(accent);
+    const accentRgb = hexToRgb(accent);
 
-    // ── BACKGROUND ──
-    ctx.fillStyle = '#001830';
+    // ── BACKGROUND: deep navy with gradient ──
+    const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+    bgGrad.addColorStop(0, '#001228');
+    bgGrad.addColorStop(1, '#002044');
+    ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // Subtle noise texture
-    const imageData = ctx.getImageData(0, 0, W, H);
-    const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
-      const n = (Math.random() - 0.5) * 12;
-      data[i]   = Math.min(255, Math.max(0, data[i]   + n));
-      data[i+1] = Math.min(255, Math.max(0, data[i+1] + n));
-      data[i+2] = Math.min(255, Math.max(0, data[i+2] + n));
+    // Noise texture
+    const imgData = ctx.getImageData(0, 0, W, H);
+    const px = imgData.data;
+    for (let i = 0; i < px.length; i += 4) {
+      const n = (Math.random() - 0.5) * 14;
+      px[i]   = Math.min(255, Math.max(0, px[i]   + n));
+      px[i+1] = Math.min(255, Math.max(0, px[i+1] + n));
+      px[i+2] = Math.min(255, Math.max(0, px[i+2] + n));
     }
-    ctx.putImageData(imageData, 0, 0);
+    ctx.putImageData(imgData, 0, 0);
 
-    // Large soft glow — top right
-    const gTR = ctx.createRadialGradient(W, 0, 0, W, 0, 700);
-    gTR.addColorStop(0, 'rgba(5,242,131,0.10)');
+    // Ambient glows
+    const gTR = ctx.createRadialGradient(W * 0.85, H * 0.15, 0, W * 0.85, H * 0.15, 500);
+    gTR.addColorStop(0, `rgba(${accentRgb},0.12)`);
     gTR.addColorStop(1, 'transparent');
     ctx.fillStyle = gTR; ctx.fillRect(0, 0, W, H);
 
-    // Large soft glow — bottom left
-    const gBL = ctx.createRadialGradient(0, H, 0, 0, H, 600);
-    gBL.addColorStop(0, 'rgba(86,71,182,0.16)');
+    const gBL = ctx.createRadialGradient(W * 0.15, H * 0.85, 0, W * 0.15, H * 0.85, 480);
+    gBL.addColorStop(0, 'rgba(86,71,182,0.18)');
     gBL.addColorStop(1, 'transparent');
     ctx.fillStyle = gBL; ctx.fillRect(0, 0, W, H);
 
-    // Accent glow behind statement area
-    const gAccent = ctx.createRadialGradient(W/2, H/2 + 80, 0, W/2, H/2 + 80, 380);
-    const accentRgb = hexToRgb(accent);
-    gAccent.addColorStop(0, `rgba(${accentRgb},0.07)`);
-    gAccent.addColorStop(1, 'transparent');
-    ctx.fillStyle = gAccent; ctx.fillRect(0, 0, W, H);
+    // Subtle grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x < W; x += 80) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 80) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
 
-    // ── THIN TOP ACCENT BAR ──
+    const pad = 64;
+
+    // ── TOP BAR: accent stripe + logo ──
     ctx.fillStyle = accent;
-    ctx.fillRect(0, 0, W, 4);
+    ctx.fillRect(0, 0, W, 5);
 
-    // ── TOP SECTION: logo + label ──
-    const pad = 72;
-
-    // ALX pill badge
-    const badgeX = pad, badgeY = 56;
-    const badgeW = 120, badgeH = 46;
-    ctx.fillStyle = accent;
-    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 10);
-    ctx.fill();
-    ctx.fillStyle = isLight ? '#001830' : '#ffffff';
-    ctx.font = '900 24px Poppins, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('ALX', badgeX + badgeW / 2, badgeY + 31);
-    ctx.textAlign = 'left';
-
-    // "Ghana" label beside badge
-    ctx.fillStyle = 'rgba(255,255,255,0.9)';
-    ctx.font = '700 28px Poppins, sans-serif';
-    ctx.fillText('Ghana', badgeX + badgeW + 18, badgeY + 31);
+    // Try to load logo image, fall back to text
+    const logoImg = await loadImage(ALX_LOGO_URL);
+    if (logoImg) {
+      const lh = 36, lw = lh * (logoImg.width / logoImg.height);
+      ctx.drawImage(logoImg, pad, 52, lw, lh);
+    } else {
+      // Fallback: ALX pill badge
+      const bW = 108, bH = 42;
+      ctx.fillStyle = accent;
+      roundRect(ctx, pad, 46, bW, bH, 10);
+      ctx.fill();
+      ctx.fillStyle = isLight ? '#001228' : '#ffffff';
+      ctx.font = '900 22px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('ALX', pad + bW / 2, 46 + 28);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.font = '700 26px Poppins, sans-serif';
+      ctx.fillText('Ghana', pad + bW + 14, 46 + 28);
+    }
 
     // Hashtag top-right
-    ctx.fillStyle = 'rgba(255,255,255,0.2)';
-    ctx.font = '500 24px Poppins, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.25)';
+    ctx.font = '500 22px Poppins, sans-serif';
     ctx.textAlign = 'right';
-    ctx.fillText('#AIIsNot', W - pad, badgeY + 31);
+    ctx.fillText('#AIIsNot  #ALXGhana', W - pad, 76);
     ctx.textAlign = 'left';
 
-    // ── THIN DIVIDER ──
-    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    // ── DIVIDER ──
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)';
     ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(pad, 132); ctx.lineTo(W - pad, 132); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad, 118); ctx.lineTo(W - pad, 118); ctx.stroke();
 
-    // ── CENTRE: "AI Is Not..." label ──
-    const centreY = 400;
+    // ── HERO "AI IS NOT" — this is the focus ──
+    const heroY = 310;
 
-    // Label background pill for readability
-    ctx.font = '700 32px Poppins, sans-serif';
-    const labelText = 'AI IS NOT…';
-    const labelW = ctx.measureText(labelText).width + 56;
-    const labelH = 52;
-    const labelX = W / 2 - labelW / 2;
-    const labelY = centreY - 38;
+    // Large accent glow behind hero text
+    const gHero = ctx.createRadialGradient(W / 2, heroY, 0, W / 2, heroY, 340);
+    gHero.addColorStop(0, `rgba(${accentRgb},0.13)`);
+    gHero.addColorStop(1, 'transparent');
+    ctx.fillStyle = gHero; ctx.fillRect(0, 0, W, H);
 
-    ctx.fillStyle = 'rgba(255,255,255,0.06)';
-    roundRect(ctx, labelX, labelY, labelW, labelH, 14);
+    // "AI IS" line
+    ctx.font = '900 148px Poppins, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText('AI IS', W / 2, heroY);
+
+    // "NOT" line — in accent colour, very large
+    ctx.font = '900 200px Poppins, sans-serif';
+    ctx.fillStyle = accent;
+
+    // Glow effect on NOT
+    ctx.shadowColor = accent;
+    ctx.shadowBlur = 40;
+    ctx.fillText('NOT', W / 2, heroY + 192);
+    ctx.shadowBlur = 0;
+
+    // Accent underline beneath NOT
+    ctx.font = '900 200px Poppins, sans-serif';
+    const notW = ctx.measureText('NOT').width;
+    ctx.fillStyle = accent;
+    ctx.globalAlpha = 0.35;
+    ctx.fillRect(W / 2 - notW / 2, heroY + 208, notW, 8);
+    ctx.globalAlpha = 1;
+
+    // ── STATEMENT BUBBLE ──
+    const stmtY = heroY + 270;
+    const stmtPadX = 44, stmtPadY = 28;
+
+    ctx.font = '700 52px Poppins, sans-serif';
+    const maxStmtW = W - pad * 2 - stmtPadX * 2;
+    let stmtLines = wrapText(ctx, statement, maxStmtW);
+
+    // Scale down if needed
+    let stmtSize = 52;
+    while (stmtLines.length > 3 && stmtSize > 32) {
+      stmtSize -= 4;
+      ctx.font = `700 ${stmtSize}px Poppins, sans-serif`;
+      stmtLines = wrapText(ctx, statement, maxStmtW);
+    }
+
+    const stmtLineH = stmtSize * 1.3;
+    const stmtTxtH = stmtLines.length * stmtLineH;
+    const bubbleW = W - pad * 2;
+    const bubbleH = stmtTxtH + stmtPadY * 2;
+    const bubbleX = pad;
+
+    // Bubble background
+    ctx.fillStyle = isLight ? `rgba(${accentRgb},0.15)` : `rgba(${accentRgb},0.12)`;
+    roundRect(ctx, bubbleX, stmtY, bubbleW, bubbleH, 20);
     ctx.fill();
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-    ctx.lineWidth = 1;
-    roundRect(ctx, labelX, labelY, labelW, labelH, 14);
+    // Bubble border
+    ctx.strokeStyle = `rgba(${accentRgb},0.4)`;
+    ctx.lineWidth = 2;
+    roundRect(ctx, bubbleX, stmtY, bubbleW, bubbleH, 20);
     ctx.stroke();
 
-    ctx.fillStyle = 'rgba(255,255,255,0.55)';
+    // Statement text
+    ctx.fillStyle = '#ffffff';
     ctx.textAlign = 'center';
-    ctx.fillText(labelText, W / 2, centreY);
-
-    // ── STATEMENT TEXT ──
-    // Wrap text
-    const maxTextW = W - pad * 2 - 40;
-    let fontSize = 96;
-    ctx.font = `900 ${fontSize}px Poppins, sans-serif`;
-    let wrappedLines = wrapText(ctx, statement.toUpperCase(), maxTextW);
-
-    // Scale down if too many lines or overflows
-    while ((wrappedLines.length > 3 || wrappedLines.some(l => ctx.measureText(l).width > maxTextW)) && fontSize > 48) {
-      fontSize -= 4;
-      ctx.font = `900 ${fontSize}px Poppins, sans-serif`;
-      wrappedLines = wrapText(ctx, statement.toUpperCase(), maxTextW);
-    }
-
-    const lineH = fontSize * 1.15;
-    const totalTextH = wrappedLines.length * lineH;
-    const textStartY = centreY + 48;
-
-    wrappedLines.forEach((line, i) => {
-      const y = textStartY + i * lineH + fontSize * 0.85;
-
-      // Accent underline on last word of last line — only if single line
-      if (i === wrappedLines.length - 1 && wrappedLines.length === 1) {
-        const lw = ctx.measureText(line).width;
-        const lx = W / 2 - lw / 2;
-        ctx.fillStyle = accent;
-        ctx.fillRect(lx, y + 10, lw, 6);
-      }
-
-      ctx.fillStyle = '#ffffff';
-      ctx.fillText(line, W / 2, y);
+    stmtLines.forEach((line, i) => {
+      ctx.fillText(line, W / 2, stmtY + stmtPadY + stmtSize + i * stmtLineH);
     });
 
-    // ── ACCENT UNDERLINE (multi-line: under last line) ──
-    if (wrappedLines.length > 1) {
-      const lastLine = wrappedLines[wrappedLines.length - 1];
-      const lw = ctx.measureText(lastLine).width;
-      const ly = textStartY + (wrappedLines.length - 1) * lineH + fontSize * 0.85;
-      ctx.fillStyle = accent;
-      ctx.fillRect(W / 2 - lw / 2, ly + 10, lw, 6);
-    }
+    // ── FOOTER ──
+    const footerY = H - 56;
 
-    // ── BOTTOM SECTION ──
-    const bottomY = H - 80;
-
-    // Thin divider above footer
-    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)';
     ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(pad, bottomY - 40); ctx.lineTo(W - pad, bottomY - 40); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad, footerY - 30); ctx.lineTo(W - pad, footerY - 30); ctx.stroke();
 
-    // Name / "Share yours" left
-    ctx.fillStyle = 'rgba(255,255,255,0.45)';
-    ctx.font = '500 26px Poppins, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillText(name ? `— ${name}` : '— Share yours', pad, bottomY);
-
-    // Domain right
-    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
     ctx.font = '500 24px Poppins, sans-serif';
+    ctx.fillText(name ? `— ${name}` : '', pad, footerY);
+
     ctx.textAlign = 'right';
-    ctx.fillText('alxghana.com', W - pad, bottomY);
+    ctx.fillStyle = 'rgba(255,255,255,0.22)';
+    ctx.font = '500 22px Poppins, sans-serif';
+    ctx.fillText('alxghana.com', W - pad, footerY);
     ctx.textAlign = 'left';
 
     return canvas.toDataURL('image/png');
@@ -1303,17 +1395,44 @@
     window.open('https://twitter.com/intent/tweet?text=' + text + '&hashtags=' + tags, '_blank');
   }
 
-  async function nativeShare() {
-    if (!navigator.share || !generatedDataURL) return;
-    try {
-      const blob = await (await fetch(generatedDataURL)).blob();
-      const file = new File([blob], 'AI-Is-Not.png', { type: 'image/png' });
-      await navigator.share({
-        title: 'AI Is Not… | ALX Ghana',
-        text: 'AI Is Not ' + currentStatement + ' #AIIsNot #ALXGhana',
-        files: [file]
-      });
-    } catch(e) {}
+  function shareLinkedIn() {
+    // LinkedIn share requires a URL — we send to the page itself + caption
+    const url = encodeURIComponent(window.location.href);
+    const summary = encodeURIComponent('AI Is Not ' + currentStatement + ' #AIIsNot #ALXGhana');
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${summary}`, '_blank');
+  }
+
+  function shareInstagram() {
+    // Instagram has no web share API — copy caption + prompt user to open app
+    const caption = 'AI Is Not ' + currentStatement + ' 💬\n\n#AIIsNot #ALXGhana';
+    navigator.clipboard.writeText(caption).then(() => {
+      showToast('📋 Caption copied! Now share in Instagram.');
+    }).catch(() => {
+      showToast('Open Instagram and share your downloaded card!');
+    });
+    // Auto-download to make it easy
+    if (generatedDataURL) {
+      const a = document.createElement('a');
+      a.download = 'AI-Is-Not-' + currentStatement.replace(/\s+/g, '-').slice(0, 40) + '.png';
+      a.href = generatedDataURL;
+      a.click();
+    }
+  }
+
+  function shareTikTok() {
+    // TikTok has no web share API — same approach as Instagram
+    const caption = 'AI Is Not ' + currentStatement + ' 💬 #AIIsNot #ALXGhana #AIAfrica';
+    navigator.clipboard.writeText(caption).then(() => {
+      showToast('📋 Caption copied! Now share in TikTok.');
+    }).catch(() => {
+      showToast('Open TikTok and share your downloaded card!');
+    });
+    if (generatedDataURL) {
+      const a = document.createElement('a');
+      a.download = 'AI-Is-Not-' + currentStatement.replace(/\s+/g, '-').slice(0, 40) + '.png';
+      a.href = generatedDataURL;
+      a.click();
+    }
   }
 
   // ===== COPY HASHTAGS =====
