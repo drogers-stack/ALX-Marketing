@@ -165,24 +165,25 @@
 
   /* ===== CHAT CARD ===== */
   .chat-card {
-    background: rgba(0,18,40,0.96);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 18px 18px 14px;
+    background: rgba(0,14,34,0.97);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 22px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .chat-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    margin-bottom: 16px;
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    flex-shrink: 0;
   }
 
   .chat-avatar {
-    width: 36px; height: 36px;
+    width: 34px; height: 34px;
     border-radius: 50%;
     background: var(--green);
     display: flex;
@@ -194,9 +195,7 @@
     flex-shrink: 0;
   }
 
-  .chat-meta {
-    flex: 1;
-  }
+  .chat-meta { flex: 1; }
 
   .chat-name {
     font-size: 13px;
@@ -218,19 +217,21 @@
     border-radius: 50%;
     background: var(--green);
     display: inline-block;
+    animation: pulse 2s infinite;
   }
 
   .chat-messages {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    min-height: 90px;
+    gap: 14px;
+    padding: 18px 16px 14px;
+    min-height: 120px;
   }
 
   .bubble-wrap {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
   }
 
   .bubble-wrap.left { align-items: flex-start; }
@@ -238,49 +239,43 @@
 
   .bubble-sender {
     font-size: 10px;
-    color: rgba(255,255,255,0.28);
-    padding: 0 12px;
+    color: rgba(255,255,255,0.22);
+    padding: 0 14px;
     font-weight: 600;
+    letter-spacing: 0.2px;
   }
 
   .bubble {
-    max-width: 88%;
-    padding: 10px 16px;
-    border-radius: 18px;
+    max-width: 85%;
+    padding: 11px 16px;
+    border-radius: 20px;
     font-size: 15px;
-    font-weight: 700;
-    line-height: 1.4;
+    font-weight: 600;
+    line-height: 1.45;
   }
 
   .bubble.left {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.07);
     border-bottom-left-radius: 4px;
-    color: rgba(255,255,255,0.72);
+    color: rgba(255,255,255,0.78);
   }
 
   .bubble.right {
     border-bottom-right-radius: 4px;
     background: var(--cyan);
     color: var(--navy);
-    transition: background 0.25s;
+    transition: background 0.25s, color 0.25s;
     word-break: break-word;
-  }
-
-  .bubble.right.placeholder {
-    background: rgba(39,222,242,0.1);
-    border: 1.5px dashed rgba(39,222,242,0.3);
-    color: rgba(39,222,242,0.4);
-    font-weight: 400;
-    font-size: 13px;
+    font-weight: 700;
   }
 
   .typing-dots {
     display: flex;
-    gap: 4px;
+    gap: 5px;
     align-items: center;
-    padding: 12px 16px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 18px;
+    padding: 13px 18px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 20px;
     border-bottom-left-radius: 4px;
     width: fit-content;
   }
@@ -288,115 +283,51 @@
   .typing-dots span {
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.3);
     animation: bounce 1.2s infinite;
   }
   .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
   .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 
   @keyframes bounce {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
     30% { transform: translateY(-5px); opacity: 1; }
   }
 
-  .chat-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    margin-top: 6px;
+  /* ===== CHAT INPUT BAR (docked inside card) ===== */
+  .chat-input-area {
     border-top: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .chat-tag {
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.16);
-  }
-
-  .chat-hashtag {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--cyan);
-    opacity: 0.6;
-  }
-
-  /* ===== COLOR PICKER ===== */
-  .color-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-
-  .color-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    flex-shrink: 0;
-  }
-
-  .color-swatches {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .swatch {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: transform 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
-
-  .swatch:hover { transform: scale(1.15); }
-  .swatch.active { border-color: var(--green); transform: scale(1.15); }
-
-  /* ===== INPUT SECTION ===== */
-  .input-section {
+    padding: 14px 14px 14px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 11px;
+    background: rgba(0,10,26,0.5);
   }
 
-  .field-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-  }
-
-  .statement-wrap {
+  .chat-input-row {
     display: flex;
     align-items: center;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(5,242,131,0.28);
-    border-radius: 14px;
-    overflow: hidden;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 16px;
+    padding: 6px 6px 6px 14px;
     transition: border-color 0.25s, box-shadow 0.25s;
+    overflow: hidden;
   }
 
-  .statement-wrap:focus-within {
-    border-color: var(--green);
-    box-shadow: 0 0 0 3px rgba(5,242,131,0.1);
+  .chat-input-row:focus-within {
+    border-color: rgba(5,242,131,0.35);
+    box-shadow: 0 0 0 3px rgba(5,242,131,0.06);
   }
 
-  .statement-prefix {
-    padding: 15px 18px;
-    font-size: 14px;
-    font-weight: 800;
-    color: rgba(255,255,255,0.25);
-    border-right: 1px solid rgba(5,242,131,0.12);
+  .chat-prefix {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.2);
     white-space: nowrap;
-    background: rgba(255,255,255,0.02);
     flex-shrink: 0;
-    line-height: 1;
+    user-select: none;
   }
 
   .statement-input {
@@ -406,29 +337,87 @@
     outline: none;
     color: var(--white);
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 15px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 4px;
     caret-color: var(--green);
     min-width: 0;
   }
 
   .statement-input::placeholder {
-    color: rgba(255,255,255,0.16);
+    color: rgba(255,255,255,0.18);
     font-weight: 400;
   }
 
   .char-counter {
     font-size: 10px;
     font-weight: 600;
-    color: rgba(255,255,255,0.22);
-    padding-right: 14px;
+    color: rgba(255,255,255,0.16);
     flex-shrink: 0;
     transition: color 0.2s;
+    padding: 0 6px;
   }
 
-  .char-counter.warn { color: var(--yellow); }
+  .char-counter.warn  { color: var(--yellow); }
   .char-counter.danger { color: var(--red); }
+
+  .btn-send {
+    width: 36px; height: 36px;
+    min-width: 36px;
+    border-radius: 11px;
+    background: var(--green);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+  }
+
+  .btn-send:hover { box-shadow: 0 4px 14px rgba(5,242,131,0.4); background: #04d874; }
+  .btn-send:active { opacity: 0.85; }
+
+  /* colour swatches row inside card */
+  .chat-input-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+  }
+
+  .color-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .color-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+    flex-shrink: 0;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 7px;
+  }
+
+  .swatch {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .swatch:hover  { transform: scale(1.2); }
+  .swatch.active { border-color: var(--green); transform: scale(1.2); }
 
   .info-row {
     display: grid;
@@ -462,58 +451,11 @@
 
   .field-error.show { display: block; }
 
-  /* ===== CTA BUTTON ===== */
-  .btn-generate {
-    width: 100%;
-    background: var(--green);
-    color: var(--navy);
-    border: none;
-    border-radius: 12px;
-    padding: 17px 24px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    letter-spacing: 0.2px;
-  }
-
-  .btn-generate:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(5,242,131,0.3);
-  }
-
-  .btn-generate:active:not(:disabled) { transform: translateY(0); }
-
-  .btn-generate:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .spinner {
-    width: 16px; height: 16px;
-    border: 2px solid rgba(0,43,86,0.3);
-    border-top-color: var(--navy);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    display: none;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
   /* ===== HASHTAG ROW ===== */
   .hashtag-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(39,222,242,0.06);
-    border: 1px solid rgba(39,222,242,0.14);
-    border-radius: 10px;
-    padding: 10px 16px;
   }
 
   .hashtags {
@@ -531,12 +473,21 @@
     font-size: 11px;
     font-weight: 600;
     cursor: pointer;
-    padding: 4px 10px;
+    padding: 4px 8px;
     border-radius: 6px;
     transition: all 0.2s;
   }
 
   .btn-copy:hover { color: var(--cyan); background: rgba(39,222,242,0.08); }
+
+  .spinner {
+    width: 15px; height: 15px;
+    border: 2px solid rgba(0,43,86,0.3);
+    border-top-color: var(--navy);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ===== MODAL ===== */
   .modal-overlay {
@@ -764,10 +715,45 @@
 <canvas id="offscreenCanvas" width="1080" height="1080"></canvas>
 <div class="toast" id="toast"></div>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="modal">
+<!-- ===== DETAILS MODAL ===== -->
+<div class="modal-overlay" id="detailsModal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <button class="modal-close" onclick="closeDetailsModal()" aria-label="Close">✕</button>
+    <div class="modal-title">Almost there <span>✨</span></div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:-8px;line-height:1.6">Tell us who you are so we can generate your card and record your statement.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <input
+        class="info-input"
+        id="nameInput"
+        type="text"
+        placeholder="Your name"
+        maxlength="40"
+        aria-label="Your name"
+        style="width:100%"
+      >
+      <div class="field-error" id="nameError">Please enter your name.</div>
+      <input
+        class="info-input"
+        id="emailInput"
+        type="email"
+        placeholder="Your email"
+        aria-label="Your email"
+        style="width:100%"
+        onkeydown="if(event.key==='Enter')submitDetails()"
+      >
+      <div class="field-error" id="emailError">Please enter a valid email address.</div>
+    </div>
+    <button class="btn-download" id="detailsSubmitBtn" onclick="submitDetails()" style="display:flex;align-items:center;justify-content:center;gap:8px">
+      <div class="spinner" id="detailsSpinner" style="display:none"></div>
+      <span id="detailsBtnText">Generate My Card →</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== CARD MODAL ===== -->
+<div class="modal-overlay" id="cardModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeCardModal()" aria-label="Close">✕</button>
     <div class="modal-title">Your card is ready <span>🎉</span></div>
     <div class="card-preview">
       <img id="cardPreviewImg" src="" alt="Your AI Is Not card">
@@ -807,15 +793,20 @@
       <span>Join <strong id="counterNum">—</strong> others who've shared their take</span>
     </div>
 
-    <!-- Chat preview card -->
+    <!-- Chat card with integrated input -->
     <div class="chat-card">
+
+      <!-- Header -->
       <div class="chat-header">
         <div class="chat-avatar" aria-hidden="true">ALX</div>
         <div class="chat-meta">
           <div class="chat-name">ALX Ghana</div>
           <div class="chat-status">Online</div>
         </div>
+        <span style="font-size:11px;font-weight:700;color:rgba(39,222,242,0.5)">#AIIsNot</span>
       </div>
+
+      <!-- Messages -->
       <div class="chat-messages">
         <div class="bubble-wrap left">
           <div class="bubble-sender">ALX Ghana</div>
@@ -833,74 +824,48 @@
           </div>
         </div>
       </div>
-      <div class="chat-footer">
-        <span class="chat-tag">ALX Ghana · 2025</span>
-        <span class="chat-hashtag">#AIIsNot</span>
-      </div>
-    </div>
 
-    <!-- Input -->
-    <div class="input-section">
-      <div class="field-label">Complete the statement</div>
-
-      <div class="statement-wrap">
-        <div class="statement-prefix">AI Is Not…</div>
-        <input
-          class="statement-input"
-          id="statementInput"
-          type="text"
-          placeholder="Just ChatGPT"
-          maxlength="80"
-          aria-label="Complete the phrase: AI Is Not..."
-          oninput="onStatementInput()"
-        >
-        <span class="char-counter" id="charCounter">80</span>
-      </div>
-
-      <!-- Color picker -->
-      <div class="color-row">
-        <span class="color-label">Card colour</span>
-        <div class="color-swatches" id="colorSwatches">
-          <div class="swatch active" data-color="#27DEF2" style="background:#27DEF2" onclick="setColor(this)" title="Cyan" tabindex="0" role="button" aria-label="Cyan"></div>
-          <div class="swatch" data-color="#fbd437" style="background:#fbd437" onclick="setColor(this)" title="Yellow" tabindex="0" role="button" aria-label="Yellow"></div>
-          <div class="swatch" data-color="#ff4747" style="background:#ff4747" onclick="setColor(this)" title="Red" tabindex="0" role="button" aria-label="Red"></div>
-          <div class="swatch" data-color="#05f283" style="background:#05f283" onclick="setColor(this)" title="Green" tabindex="0" role="button" aria-label="Green"></div>
-          <div class="swatch" data-color="#5647b6" style="background:#5647b6" onclick="setColor(this)" title="Purple" tabindex="0" role="button" aria-label="Purple"></div>
-          <div class="swatch" data-color="#ffffff" style="background:#ffffff;border:1px solid rgba(255,255,255,0.2)" onclick="setColor(this)" title="White" tabindex="0" role="button" aria-label="White"></div>
+      <!-- Input area docked to bottom -->
+      <div class="chat-input-area">
+        <div class="chat-input-row">
+          <span class="chat-prefix">AI Is Not…</span>
+          <input
+            class="statement-input"
+            id="statementInput"
+            type="text"
+            placeholder="just ChatGPT"
+            maxlength="80"
+            aria-label="Complete the phrase: AI Is Not..."
+            oninput="onStatementInput()"
+            onkeydown="if(event.key==='Enter')handleGenerate()"
+          >
+          <span class="char-counter" id="charCounter">80</span>
+          <button class="btn-send" onclick="handleGenerate()" aria-label="Generate card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#002B56" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div class="chat-input-meta">
+          <div class="color-row">
+            <span class="color-label">Colour</span>
+            <div class="color-swatches">
+              <div class="swatch active" data-color="#27DEF2" style="background:#27DEF2" onclick="setColor(this)" title="Cyan" tabindex="0" role="button" aria-label="Cyan"></div>
+              <div class="swatch" data-color="#fbd437" style="background:#fbd437" onclick="setColor(this)" title="Yellow" tabindex="0" role="button" aria-label="Yellow"></div>
+              <div class="swatch" data-color="#ff4747" style="background:#ff4747" onclick="setColor(this)" title="Red" tabindex="0" role="button" aria-label="Red"></div>
+              <div class="swatch" data-color="#05f283" style="background:#05f283" onclick="setColor(this)" title="Green" tabindex="0" role="button" aria-label="Green"></div>
+              <div class="swatch" data-color="#5647b6" style="background:#5647b6" onclick="setColor(this)" title="Purple" tabindex="0" role="button" aria-label="Purple"></div>
+              <div class="swatch" data-color="#ffffff" style="background:#ffffff;border-color:rgba(255,255,255,0.25)" onclick="setColor(this)" title="White" tabindex="0" role="button" aria-label="White"></div>
+            </div>
+          </div>
+          <div class="hashtag-row" style="border:none;background:none;padding:0">
+            <span class="hashtags" style="font-size:11px">#AIIsNot</span>
+            <button class="btn-copy" onclick="copyHashtags()">Copy</button>
+          </div>
         </div>
       </div>
 
-      <div class="info-row">
-        <input
-          class="info-input"
-          id="nameInput"
-          type="text"
-          placeholder="Your name"
-          maxlength="40"
-          aria-label="Your name"
-          required
-        >
-        <input
-          class="info-input"
-          id="emailInput"
-          type="email"
-          placeholder="Your email"
-          aria-label="Your email"
-          required
-        >
-      </div>
-      <div class="field-error" id="nameError">Please enter your name.</div>
-      <div class="field-error" id="emailError">Please enter a valid email address.</div>
-
-      <button class="btn-generate" id="generateBtn" onclick="handleGenerate()">
-        <div class="spinner" id="spinner"></div>
-        <span id="btnText">Generate My Card ↓</span>
-      </button>
-
-      <div class="hashtag-row">
-        <span class="hashtags">#AIIsNot &nbsp;#ALXGhana</span>
-        <button class="btn-copy" onclick="copyHashtags()">Copy</button>
-      </div>
     </div>
 
     <!-- Public feed -->
@@ -952,8 +917,6 @@
     const typingWrap = document.getElementById('typingWrap');
     const replyWrap  = document.getElementById('replyWrap');
     const previewText = document.getElementById('previewText');
-    const nameVal = document.getElementById('nameInput').value.trim();
-    document.getElementById('replySender').textContent = nameVal || 'You';
 
     if (val.trim()) {
       typingWrap.style.display = 'none';
@@ -967,17 +930,31 @@
     }
   }
 
-  // ===== GENERATE + SUBMIT =====
-  async function handleGenerate() {
+  // ===== STEP 1: open details modal =====
+  function handleGenerate() {
     const statement = document.getElementById('statementInput').value.trim();
-
     if (!statement) { showToast('✏️ Please complete the phrase first!'); return; }
+    // Clear previous values
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+    document.getElementById('nameInput').classList.remove('error');
+    document.getElementById('emailInput').classList.remove('error');
+    document.getElementById('nameError').classList.remove('show');
+    document.getElementById('emailError').classList.remove('show');
+    document.getElementById('detailsModal').classList.add('active');
+    setTimeout(() => document.getElementById('nameInput').focus(), 100);
+  }
 
+  function closeDetailsModal() {
+    document.getElementById('detailsModal').classList.remove('active');
+  }
+
+  // ===== STEP 2: validate details, generate + submit =====
+  async function submitDetails() {
     const name  = document.getElementById('nameInput').value.trim();
     const email = document.getElementById('emailInput').value.trim();
 
     let valid = true;
-
     if (!name) {
       document.getElementById('nameInput').classList.add('error');
       document.getElementById('nameError').classList.add('show');
@@ -986,7 +963,6 @@
       document.getElementById('nameInput').classList.remove('error');
       document.getElementById('nameError').classList.remove('show');
     }
-
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       document.getElementById('emailInput').classList.add('error');
       document.getElementById('emailError').classList.add('show');
@@ -995,13 +971,12 @@
       document.getElementById('emailInput').classList.remove('error');
       document.getElementById('emailError').classList.remove('show');
     }
-
     if (!valid) return;
 
-    setLoading(true);
+    const statement = document.getElementById('statementInput').value.trim();
+    setDetailsLoading(true);
 
     try {
-      // Run canvas generation + API submit in parallel
       const [dataURL] = await Promise.all([
         generateCanvas(statement, name),
         submitToSheets(statement, name, email)
@@ -1010,30 +985,29 @@
       generatedDataURL = dataURL;
       currentStatement = statement;
 
-      // Show modal
+      // Close details modal, open card modal
+      closeDetailsModal();
       document.getElementById('cardPreviewImg').src = dataURL;
       document.getElementById('iosTip').style.display = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'block' : 'none';
       document.getElementById('nativeShareBtn').style.display = navigator.share ? 'flex' : 'none';
-      document.getElementById('modal').classList.add('active');
+      document.getElementById('cardModal').classList.add('active');
 
-      // Refresh counter & feed
+      // Update counter & feed in background
       loadCounter();
       loadFeed();
     } catch(err) {
       console.error(err);
       showToast('Something went wrong. Please try again.');
     } finally {
-      setLoading(false);
+      setDetailsLoading(false);
     }
   }
 
-  function setLoading(on) {
-    const btn = document.getElementById('generateBtn');
-    const spinner = document.getElementById('spinner');
-    const btnText = document.getElementById('btnText');
+  function setDetailsLoading(on) {
+    const btn = document.getElementById('detailsSubmitBtn');
     btn.disabled = on;
-    spinner.style.display = on ? 'block' : 'none';
-    btnText.textContent = on ? 'Creating your card…' : 'Generate My Card ↓';
+    document.getElementById('detailsSpinner').style.display = on ? 'inline-block' : 'none';
+    document.getElementById('detailsBtnText').textContent = on ? 'Creating your card…' : 'Generate My Card →';
   }
 
   async function submitToSheets(statement, name, email) {
@@ -1101,161 +1075,217 @@
   async function generateCanvas(statement, name) {
     const canvas = document.getElementById('offscreenCanvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = 1080;
-    canvas.height = 1080;
+    const W = 1080, H = 1080;
+    canvas.width = W; canvas.height = H;
 
-    // Wait for Poppins to load
     await document.fonts.ready;
 
-    // Background
-    ctx.fillStyle = '#002B56';
-    ctx.fillRect(0, 0, 1080, 1080);
+    const accent = selectedColor;
+    const lightColors = ['#fbd437','#05f283','#ffffff','#27DEF2'];
+    const isLight = lightColors.includes(accent);
 
-    // Grid lines
-    ctx.strokeStyle = 'rgba(5,242,131,0.05)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x <= 1080; x += 60) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 1080); ctx.stroke();
+    // ── BACKGROUND ──
+    ctx.fillStyle = '#001830';
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle noise texture
+    const imageData = ctx.getImageData(0, 0, W, H);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const n = (Math.random() - 0.5) * 12;
+      data[i]   = Math.min(255, Math.max(0, data[i]   + n));
+      data[i+1] = Math.min(255, Math.max(0, data[i+1] + n));
+      data[i+2] = Math.min(255, Math.max(0, data[i+2] + n));
     }
-    for (let y = 0; y <= 1080; y += 60) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1080, y); ctx.stroke();
-    }
+    ctx.putImageData(imageData, 0, 0);
 
-    // Top-right glow
-    let g1 = ctx.createRadialGradient(980, 100, 0, 980, 100, 340);
-    g1.addColorStop(0, 'rgba(5,242,131,0.14)');
-    g1.addColorStop(1, 'transparent');
-    ctx.fillStyle = g1; ctx.fillRect(0, 0, 1080, 1080);
+    // Large soft glow — top right
+    const gTR = ctx.createRadialGradient(W, 0, 0, W, 0, 700);
+    gTR.addColorStop(0, 'rgba(5,242,131,0.10)');
+    gTR.addColorStop(1, 'transparent');
+    ctx.fillStyle = gTR; ctx.fillRect(0, 0, W, H);
 
-    // Bottom-left glow
-    let g2 = ctx.createRadialGradient(100, 980, 0, 100, 980, 280);
-    g2.addColorStop(0, 'rgba(86,71,182,0.22)');
-    g2.addColorStop(1, 'transparent');
-    ctx.fillStyle = g2; ctx.fillRect(0, 0, 1080, 1080);
+    // Large soft glow — bottom left
+    const gBL = ctx.createRadialGradient(0, H, 0, 0, H, 600);
+    gBL.addColorStop(0, 'rgba(86,71,182,0.16)');
+    gBL.addColorStop(1, 'transparent');
+    ctx.fillStyle = gBL; ctx.fillRect(0, 0, W, H);
 
-    // ── HEADER ──
-    // Avatar circle
-    ctx.fillStyle = '#05f283';
-    ctx.beginPath();
-    ctx.arc(110, 115, 48, 0, Math.PI * 2);
+    // Accent glow behind statement area
+    const gAccent = ctx.createRadialGradient(W/2, H/2 + 80, 0, W/2, H/2 + 80, 380);
+    const accentRgb = hexToRgb(accent);
+    gAccent.addColorStop(0, `rgba(${accentRgb},0.07)`);
+    gAccent.addColorStop(1, 'transparent');
+    ctx.fillStyle = gAccent; ctx.fillRect(0, 0, W, H);
+
+    // ── THIN TOP ACCENT BAR ──
+    ctx.fillStyle = accent;
+    ctx.fillRect(0, 0, W, 4);
+
+    // ── TOP SECTION: logo + label ──
+    const pad = 72;
+
+    // ALX pill badge
+    const badgeX = pad, badgeY = 56;
+    const badgeW = 120, badgeH = 46;
+    ctx.fillStyle = accent;
+    roundRect(ctx, badgeX, badgeY, badgeW, badgeH, 10);
     ctx.fill();
-
-    // ALX text in avatar
-    ctx.fillStyle = '#002B56';
-    ctx.font = '900 22px Poppins, sans-serif';
+    ctx.fillStyle = isLight ? '#001830' : '#ffffff';
+    ctx.font = '900 24px Poppins, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('ALX', 110, 123);
+    ctx.fillText('ALX', badgeX + badgeW / 2, badgeY + 31);
     ctx.textAlign = 'left';
 
-    // Chat name
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '700 38px Poppins, sans-serif';
-    ctx.fillText('ALX Ghana', 178, 106);
+    // "Ghana" label beside badge
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.font = '700 28px Poppins, sans-serif';
+    ctx.fillText('Ghana', badgeX + badgeW + 18, badgeY + 31);
 
-    // Online status
-    ctx.fillStyle = '#05f283';
-    ctx.font = '600 26px Poppins, sans-serif';
-    ctx.fillText('● Online', 178, 140);
+    // Hashtag top-right
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.font = '500 24px Poppins, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText('#AIIsNot', W - pad, badgeY + 31);
+    ctx.textAlign = 'left';
 
-    // Divider
-    ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(60, 186); ctx.lineTo(1020, 186); ctx.stroke();
+    // ── THIN DIVIDER ──
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad, 132); ctx.lineTo(W - pad, 132); ctx.stroke();
 
-    // ── ALX BUBBLE (left) ──
-    const alxMsg = 'AI Is Not… 🤔';
-    ctx.font = '600 40px Poppins, sans-serif';
-    const alxW = Math.min(ctx.measureText(alxMsg).width + 70, 900);
-    const alxH = 86;
-    const alxX = 60, alxY = 232;
+    // ── CENTRE: "AI Is Not..." label ──
+    const centreY = 400;
 
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
-    ctx.font = '500 26px Poppins, sans-serif';
-    ctx.fillText('ALX Ghana', alxX, alxY - 10);
+    // Label background pill for readability
+    ctx.font = '700 32px Poppins, sans-serif';
+    const labelText = 'AI IS NOT…';
+    const labelW = ctx.measureText(labelText).width + 56;
+    const labelH = 52;
+    const labelX = W / 2 - labelW / 2;
+    const labelY = centreY - 38;
 
-    ctx.fillStyle = 'rgba(255,255,255,0.1)';
-    roundRect(ctx, alxX, alxY, alxW, alxH, [18, 18, 18, 4]);
+    ctx.fillStyle = 'rgba(255,255,255,0.06)';
+    roundRect(ctx, labelX, labelY, labelW, labelH, 14);
     ctx.fill();
 
-    ctx.fillStyle = 'rgba(255,255,255,0.78)';
-    ctx.font = '600 40px Poppins, sans-serif';
-    ctx.fillText(alxMsg, alxX + 34, alxY + 55);
+    ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, labelX, labelY, labelW, labelH, 14);
+    ctx.stroke();
 
-    // ── USER BUBBLE (right) ──
-    const bubbleColor = selectedColor;
-    const lightColors = ['#fbd437','#05f283','#ffffff','#27DEF2'];
-    const textColor = lightColors.includes(bubbleColor) ? '#002B56' : '#ffffff';
+    ctx.fillStyle = 'rgba(255,255,255,0.55)';
+    ctx.textAlign = 'center';
+    ctx.fillText(labelText, W / 2, centreY);
 
-    ctx.font = '800 48px Poppins, sans-serif';
-    const maxBW = 880;
-    const words = statement.split(' ');
-    let lines = [], line = '';
-    for (let i = 0; i < words.length; i++) {
-      const test = line + words[i] + ' ';
-      if (ctx.measureText(test).width > maxBW - 70 && i > 0) {
-        lines.push(line.trim());
-        line = words[i] + ' ';
-      } else {
-        line = test;
-      }
+    // ── STATEMENT TEXT ──
+    // Wrap text
+    const maxTextW = W - pad * 2 - 40;
+    let fontSize = 96;
+    ctx.font = `900 ${fontSize}px Poppins, sans-serif`;
+    let wrappedLines = wrapText(ctx, statement.toUpperCase(), maxTextW);
+
+    // Scale down if too many lines or overflows
+    while ((wrappedLines.length > 3 || wrappedLines.some(l => ctx.measureText(l).width > maxTextW)) && fontSize > 48) {
+      fontSize -= 4;
+      ctx.font = `900 ${fontSize}px Poppins, sans-serif`;
+      wrappedLines = wrapText(ctx, statement.toUpperCase(), maxTextW);
     }
-    lines.push(line.trim());
 
-    const uBW = Math.min(ctx.measureText(lines[0]).width + 70, maxBW);
-    const uBH = lines.length * 62 + 44;
-    const uBX = 1020 - uBW;
-    const uBY = alxY + alxH + 56;
+    const lineH = fontSize * 1.15;
+    const totalTextH = wrappedLines.length * lineH;
+    const textStartY = centreY + 48;
 
-    const senderLabel = name || 'You';
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
-    ctx.font = '500 26px Poppins, sans-serif';
-    const senderW = ctx.measureText(senderLabel).width;
-    ctx.fillText(senderLabel, 1020 - senderW, uBY - 10);
+    wrappedLines.forEach((line, i) => {
+      const y = textStartY + i * lineH + fontSize * 0.85;
 
-    ctx.fillStyle = bubbleColor;
-    roundRect(ctx, uBX, uBY, uBW, uBH, [18, 18, 4, 18]);
-    ctx.fill();
+      // Accent underline on last word of last line — only if single line
+      if (i === wrappedLines.length - 1 && wrappedLines.length === 1) {
+        const lw = ctx.measureText(line).width;
+        const lx = W / 2 - lw / 2;
+        ctx.fillStyle = accent;
+        ctx.fillRect(lx, y + 10, lw, 6);
+      }
 
-    ctx.fillStyle = textColor;
-    ctx.font = '800 48px Poppins, sans-serif';
-    lines.forEach((l, i) => {
-      const lw = ctx.measureText(l).width;
-      ctx.fillText(l, uBX + (uBW - lw) / 2, uBY + 54 + i * 62);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(line, W / 2, y);
     });
 
-    // ── FOOTER WATERMARK ──
-    ctx.fillStyle = 'rgba(255,255,255,0.35)';
-    ctx.font = '500 28px Poppins, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('alxghana.com  |  #AIIsNot  #ALXGhana', 540, 1032);
-    ctx.textAlign = 'left';
+    // ── ACCENT UNDERLINE (multi-line: under last line) ──
+    if (wrappedLines.length > 1) {
+      const lastLine = wrappedLines[wrappedLines.length - 1];
+      const lw = ctx.measureText(lastLine).width;
+      const ly = textStartY + (wrappedLines.length - 1) * lineH + fontSize * 0.85;
+      ctx.fillStyle = accent;
+      ctx.fillRect(W / 2 - lw / 2, ly + 10, lw, 6);
+    }
 
-    // Border
-    ctx.strokeStyle = 'rgba(5,242,131,0.2)';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(18, 18, 1044, 1044);
+    // ── BOTTOM SECTION ──
+    const bottomY = H - 80;
+
+    // Thin divider above footer
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad, bottomY - 40); ctx.lineTo(W - pad, bottomY - 40); ctx.stroke();
+
+    // Name / "Share yours" left
+    ctx.fillStyle = 'rgba(255,255,255,0.45)';
+    ctx.font = '500 26px Poppins, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(name ? `— ${name}` : '— Share yours', pad, bottomY);
+
+    // Domain right
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.font = '500 24px Poppins, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText('alxghana.com', W - pad, bottomY);
+    ctx.textAlign = 'left';
 
     return canvas.toDataURL('image/png');
   }
 
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    const lines = [];
+    let line = '';
+    for (let i = 0; i < words.length; i++) {
+      const test = line + (line ? ' ' : '') + words[i];
+      if (ctx.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = words[i];
+      } else {
+        line = test;
+      }
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `${r},${g},${b}`;
+  }
+
   function roundRect(ctx, x, y, w, h, r) {
-    if (typeof r === 'number') r = [r, r, r, r];
+    r = typeof r === 'number' ? r : r[0];
     ctx.beginPath();
-    ctx.moveTo(x + r[0], y);
-    ctx.lineTo(x + w - r[1], y);
-    ctx.quadraticCurveTo(x + w, y, x + w, y + r[1]);
-    ctx.lineTo(x + w, y + h - r[2]);
-    ctx.quadraticCurveTo(x + w, y + h, x + w - r[2], y + h);
-    ctx.lineTo(x + r[3], y + h);
-    ctx.quadraticCurveTo(x, y + h, x, y + h - r[3]);
-    ctx.lineTo(x, y + r[0]);
-    ctx.quadraticCurveTo(x, y, x + r[0], y);
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
     ctx.closePath();
   }
 
   // ===== MODAL ACTIONS =====
-  function closeModal() {
-    document.getElementById('modal').classList.remove('active');
+  function closeCardModal() {
+    document.getElementById('cardModal').classList.remove('active');
   }
 
   function downloadCard() {
